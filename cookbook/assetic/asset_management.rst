@@ -1,13 +1,9 @@
 Jak używać "Assetic" do zarządzania zasobami.
 =============================================
 
-Assetic łączy w sobie dwie różne idee: zasoby i filtry. Zasoby to pliki
-takie jak CSS, JavaScript czy pliki obrazów. Filtry are things that can
-be applied to these files przed wysłaniem ich do przeglądarki. This allows
-a separation between the asset files stored in the application and the files
-actually presented to the user.
+"Assetic" łączy w sobie dwie różne idee: zasoby i filtry. Zasoby to pliki takie jak CSS, JavaScript czy pliki obrazów. Filtry to narzędzia którymi możesz modyfikować swoje pliki przed wysłaniem ich do przeglądarki. This allows a separation between the asset files stored in the application and the files actually presented to the user.
 
-Bez kożystania z "Assetic", wysyłasz do przeglądarki plik taki jakim go stworzyłeś:
+Bez korzystania z "Assetic", wysyłasz do przeglądarki plik taki jakim go stworzyłeś:
 
 .. configuration-block::
 
@@ -20,7 +16,7 @@ Bez kożystania z "Assetic", wysyłasz do przeglądarki plik taki jakim go stwor
         <script src="<?php echo $view['assets']->getUrl('js/script.js') ?>"
                 type="text/javascript" />
 
-*Z* "Assetic", możesz zmieniać dowolnie zasoby (lub też dołączać gdzie chcesz) przed wysłaniem do klienta. To znaczy że możesz:
+*Z* "Assetic", możesz dowolnie zmieniać zasoby (lub też dołączać je gdzie chcesz) przed wysłaniem do klienta. To znaczy że możesz:
 
 * Minimalizować i łączyć wszystkie twoje pliki CSS i JS.
 
@@ -31,9 +27,7 @@ Bez kożystania z "Assetic", wysyłasz do przeglądarki plik taki jakim go stwor
 Zasoby
 ------
 
-Using Assetic provides many advantages over directly serving the files.
-The files do not need to be stored where they are served from and can be
-drawn from various sources such as from within a bundle:
+Używanie "Assetic" daje więcej możlowości niż zwykłe dołączanie plików. Pliki nie muszą być przechowywane w lokalizacji z której przeglądarka pobiera plik jak również możesz dołaczać wiele plików z jednego miejsca, na przykład z "bundle".
 
 .. configuration-block::
 
@@ -54,8 +48,7 @@ drawn from various sources such as from within a bundle:
 
 .. tip::
 
-    To bring in CSS stylesheets, you can use the same methodologies seen
-    in this entry, except with the `stylesheets` tag:
+    W taki sam sposób - jak wyżej możesz obrabiać pliki CSS, zmień tylko tag `stylesheets`:
 
     .. configuration-block::
 
@@ -74,9 +67,8 @@ drawn from various sources such as from within a bundle:
             <link rel="stylesheet" href="<?php echo $view->escape($url) ?>" />
             <?php endforeach; ?>
 
-In this example, all of the files in the ``Resources/public/js/`` directory
-of the ``AcmeFooBundle`` will be loaded and served from a different location.
-The actual rendered tag might simply look like:
+W tym przykładzie, wszystkie pliki w katalogu ``Resources/public/js/`` zawartym w ``AcmeFooBundle`` będą załadowane i udostępnione z innego miejsca.
+Teraz tak zrenderowany tag może wyglądać prościej jak na przykład:
 
 .. code-block:: html
 
@@ -84,21 +76,12 @@ The actual rendered tag might simply look like:
 
 .. note::
 
-    This is a key point: once you let Assetic handle your assets, the files are
-    served from a different location. This *can* cause problems with CSS files
-    that reference images by their relative path. However, this can be fixed
-    by using the ``cssrewrite`` filter, which updates paths in CSS files
-    to reflect their new location.
+    W tym właśnie tkwi sedno "Assetic": jak tylko zaczniesz go używać, pliki będą udostępniane z innej lokalizacji. To oczywiście *może* prowodować problemy w plikach CSS które odwołują się do plików graficznych poprzez relatywną ścieżkę. Jakkolwiek, możesz naprawić to używając filtra ``cssrewrite``, który zmienia ścieżki dostępu w plikach CSS tak aby odzwierciedlały ich nowe położenie.
 
-Combining Assets
+Łączenie zasobów
 ~~~~~~~~~~~~~~~~
 
-You can also combine several files into one. This helps to reduce the number
-of HTTP requests, which is great for front end performance. It also allows
-you to maintain the files more easily by splitting them into manageable parts.
-This can help with re-usability as you can easily split project-specific
-files from those which can be used in other applications, but still serve
-them as a single file:
+Możesz również łączyć kilka plików w jeden. Pomaga to zredukować liczbę wywołań HTTP, co niezawodnie poprawi wydajność po stronie użytkownika. Pozwala to także na łatwiejsze utrzymanie kodu pozwalając na dzielenie go na małe łatwe do utrzymania pliki. Ma to również wymierne korzyści przy ponownym użyciu raz napisanego kodu który możesz dołączyć do innej aplikacji, stale jednak udostępniając cały kod jako jedną całość:
 
 .. configuration-block::
 
