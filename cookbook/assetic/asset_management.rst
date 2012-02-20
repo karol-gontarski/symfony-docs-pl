@@ -1,7 +1,7 @@
 Jak używać "Assetic" do zarządzania zasobami.
 =============================================
 
-"Assetic" łączy w sobie dwie różne idee: zasoby i filtry. Zasoby to pliki takie jak CSS, JavaScript czy pliki obrazów. Filtry to narzędzia którymi możesz modyfikować swoje pliki przed wysłaniem ich do przeglądarki. This allows a separation between the asset files stored in the application and the files actually presented to the user.
+"Assetic" łączy w sobie dwie różne idee: zasoby i filtry. Zasoby to pliki takie jak CSS, JavaScript czy pliki obrazów. Filtry to narzędzia którymi możesz modyfikować swoje pliki przed wysłaniem ich do przeglądarki. Pozwala to na oddzielenie plików podzielonych dla potrzeb produkcji od kodu rzeczyczywiście wysyłanego do użytkownika.
 
 Bez korzystania z "Assetic", wysyłasz do przeglądarki plik taki jakim go stworzyłeś:
 
@@ -104,19 +104,14 @@ Możesz również łączyć kilka plików w jeden. Pomaga to zredukować liczbę
         <script src="<?php echo $view->escape($url) ?>"></script>
         <?php endforeach; ?>
 
-In the `dev` environment, each file is still served individually, so that
-you can debug problems more easily. However, in the `prod` environment, this
-will be rendered as a single `script` tag.
+W środowisku dewelopera `dev`, każdy plik jest nadal wysyłany pojedynczo dla ułatwienia łatwego debugowania kodu. Niemniej środowisku produkcyjnym `prod` plik renederowany będzie już do jednego piku - jako jeden tag `script`.
 
 .. tip::
 
-    If you're new to Assetic and try to use your application in the ``prod``
-    environment (by using the ``app.php`` controller), you'll likely see
-    that all of your CSS and JS breaks. Don't worry! This is on purpose.
-    For details on using Assetic in the `prod` environment, see :ref:`cookbook-assetic-dumping`.
+    Jeżeli od niedawna kożystasz z Assetic i próbujesz uruchomić swoją aplikację w środowisku ``prod`` ( używając kontrolera ``app.php`` ), napewno zauważysz że nie zadziałają Ci żadne pliki CSS i JS. Nie martw się !!! To ma swój cel.
+ Szczegóły kożystania z Assetic w środowisku `prod`, dostępne tu :ref:`cookbook-assetic-dumping`.
 
-And combining files doesn't only apply to *your* files. You can also use Assetic to
-combine third party assets, such as jQuery, with your own into a single file:
+Łączenie plików nie dostyczy tylko *twoich* plików. Możesz użyć Assetic do łączenia zasobów innych autorów, takich jak jQuery, z twoim kodem w jeden plik.
 
 .. configuration-block::
 
@@ -137,8 +132,8 @@ combine third party assets, such as jQuery, with your own into a single file:
         <script src="<?php echo $view->escape($url) ?>"></script>
         <?php endforeach; ?>
 
-Filters
--------
+Filtry
+------
 
 Once they're managed by Assetic, you can apply filters to your assets before
 they are served. This includes filters that compress the output of your assets
